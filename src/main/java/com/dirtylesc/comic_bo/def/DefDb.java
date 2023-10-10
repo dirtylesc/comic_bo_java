@@ -3,6 +3,9 @@ package com.dirtylesc.comic_bo.def;
 public class DefDb {
     public static final String PATH_API_PRIV        = "/priv";
     public static final String PATH_API_PUBL        = "/publ";
+
+    //----------------------------------------------------------------
+
     public static final String URI_API_USER         = "/users";
     public static final String URI_API_TRANSLATOR   = "/translators";
     public static final String URI_API_COMIC        = "/comics";
