@@ -2,10 +2,19 @@ package com.dirtylesc.comic_bo.entities.categories;
 
 import com.dirtylesc.comic_bo.def.DefDb;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
+import java.util.Map;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = DefDb.TA_CATEGORIES)
 public class TaCategories {
     private static final Long serialVersionUID = 1000L;
@@ -42,18 +51,12 @@ public class TaCategories {
     @Column(name = COL_UPDATED_AT   , nullable = true)
     private Date updated_at;
     @Column(name = COL_DELETED_AT   , nullable = true)
-    private Integer deleted_at;
+    private Date deleted_at;
 
-    public TaCategories() {}
-
-    public TaCategories(Long user_id) {
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
+    public TaCategories(Map<String, String> map) {
+        this.name           = map.get(ATT_NAME);
+        this.description    = map.get(ATT_DESCRIPTION);
+        this.slug           = map.get(ATT_SLUG);
+        this.slug           = map.get(ATT_SLUG);
     }
 }

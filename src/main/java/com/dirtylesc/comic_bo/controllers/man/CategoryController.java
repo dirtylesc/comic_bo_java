@@ -1,9 +1,12 @@
 package com.dirtylesc.comic_bo.controllers.man;
 
+import com.dirtylesc.comic_bo.def.DefAPI;
 import com.dirtylesc.comic_bo.def.DefDb;
 import com.dirtylesc.comic_bo.entities.categories.TaCategories;
 import com.dirtylesc.comic_bo.entities.categories.ViCategories;
+import com.dirtylesc.comic_bo.entities.main.ApiResponse;
 import com.dirtylesc.comic_bo.requests.man.category.SearchRequest;
+import com.dirtylesc.comic_bo.requests.man.category.StoreRequest;
 import com.dirtylesc.comic_bo.services.man.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +38,19 @@ public class CategoryController {
         return ResponseEntity.ok(category);
     }
 
-    @PostMapping("")
-    public ResponseEntity<TaCategories> doCreateCategory() {
-        return null;
+    @PostMapping(DefDb.URI_API_STORE)
+    public ResponseEntity<ApiResponse<TaCategories>> doCreateCategory(@RequestBody StoreRequest params) throws IllegalAccessException {
+        TaCategories cat = categoryService.doStore(params);
+
+        if(cat == null) {
+            return ResponseEntity.ok(new ApiResponse<>(-1,DefAPI.SV_CODE_API_NO));
+        }
+
+        return ResponseEntity.ok(new ApiResponse<TaCategories>(
+                1,
+                DefAPI.SV_CODE_API_YES,
+                categoryService.doStore(params)
+        ));
     }
 
     @PutMapping("/{id}")
