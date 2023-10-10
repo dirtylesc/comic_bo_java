@@ -32,7 +32,7 @@ public class ViTranslators {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COL_ID                   , nullable = false)
-    private Long id;
+    private Long    id;
     @Column(name = COL_NAME                 , nullable = true)
     private String  name;
     @Column(name = COL_NICKNAME             , nullable = true)
